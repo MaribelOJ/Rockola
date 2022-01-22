@@ -1,10 +1,11 @@
 from application import db
+#from sqlalchemy.orm import relationship
 
 
 class Song(db.Model):
     __tablename__ = 'Song'
 
-    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)#, relationship("favoriteSong"))
     name = db.Column(db.String)
     artist = db.Column(db.String)
     genre = db.Column(db.String)
@@ -24,13 +25,13 @@ class Song(db.Model):
 class User(db.Model):    
     __tablename__ = 'User'
 
-    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)#, relationship("favoriteSong"))
     email = db.Column(db.String, unique = True)
     artist = db.Column(db.String)
 
-class favoriteSong(db.Model):
+'''class favoriteSong(db.Model):
     __tablename__ = 'Favorite Song'
 
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-    User_id = db.Column(db.Foreignkey(User.id))
-    Song_id = db.Column(db.Foreignkey(Song.id))
+    User_id = db.Column(db.Integer, db.Foreignkey('User.id'))
+    Song_id = db.Column(db.Integer, db.Foreignkey('Song.id'))'''
