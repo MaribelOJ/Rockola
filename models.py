@@ -1,4 +1,5 @@
-from app import db
+from application import db
+
 
 class Song(db.Model):
     __tablename__ = 'Song'
@@ -18,6 +19,7 @@ class Song(db.Model):
         self.album = album
         self.year = year
         self.link = link
+    
 
 class User(db.Model):    
     __tablename__ = 'User'
@@ -30,5 +32,5 @@ class favoriteSong(db.Model):
     __tablename__ = 'Favorite Song'
 
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-    User_id = db.Column(db.Foreignkey("User.id"))
-    Song_id = db.Column(db.Foreignkey("Song.id"))
+    User_id = db.Column(db.Foreignkey(User.id))
+    Song_id = db.Column(db.Foreignkey(Song.id))
