@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -21,16 +21,20 @@ db.session.commit()
 def front_page():
     return 'Hello everybody! It is a pleasure having you here'
 
+@app.route('/room')
+def room_page():
+    return render_template("room.html")
+
 @app.route('/song', methods=['GET', 'POST'])
 def crud_song():
 
     if request.method == 'GET':
-        name = "imagine"
-        artist = "John lenon"
+        name = "natural"
+        artist = "imagine dragons"
         genre = "rock"
-        album = "Imagine"
-        year = 2005
-        link = "https://www.youtube.com/watch?v=VOgFZfRVaww"
+        album = "Origins"
+        year = 2018
+        link = "https://www.youtube.com/watch?v=0I647GU3Jsc"
         
         #objeto de la clase canción
         entry = Song(name,artist,genre,album,year,link)
