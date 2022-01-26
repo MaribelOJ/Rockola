@@ -12,20 +12,30 @@
     <title>My Rockola</title>
 </head>
 <body>
-    <h1>Contact Information</h1>
-    <table style="width:100%">
-        <tr>
-          <th>Facebook</th>
-          <th>Instagram</th>
-          <th>Phone</th>
-        </tr>
-        <tr>
-          <td><a href = "https://www.Facebook.com">
-              <img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Facebook_icon.svg/2048px-Facebook_icon.svg.png" width="100">
-            </a></td>
-          <td><a href = "https://www.Instagram.com"><img src = "https://elordenmundial.com/wp-content/uploads/2021/10/instagram-aplicacion-tecnologia-lanzamiento-sociedad-historia.jpg" width="100"></a></td>
-          <td>+57 3206823642</td>
-        </tr>
-      </table>   
+  <h1>your user id is = {{id}}</h1>
+  <h2>Rockola Room</h2>
+  <form action = "{{url_for('create_room')}}" method = "post">
+    <div>
+      <input type = "text" name = "room_code" placeholder = "code">
+    </div>
+    <div>
+      <button>Submit</button>
+    </div>
+  </form>
+  <h3>Contact Information</h3>
+  <table style="width:100%">
+    <tr>
+      <th>Facebook</th>
+      <th>Instagram</th>
+      <th>Phone</th>
+    </tr>
+    <tr>
+      <td><a href = "https://www.Facebook.com">
+          <img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Facebook_icon.svg/2048px-Facebook_icon.svg.png" width="100">
+          </a></td>
+      <td><a href = "https://www.Instagram.com"><img src = "https://elordenmundial.com/wp-content/uploads/2021/10/instagram-aplicacion-tecnologia-lanzamiento-sociedad-historia.jpg" width="100"></a></td>
+      <td>+57 3206823642</td>
+    </tr>
+  </table>   
 </body>
 </html>

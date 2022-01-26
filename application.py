@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -11,7 +11,7 @@ app.secret_key = 'some-secret-key'
 db = SQLAlchemy(app)
 
 #from app import routes, models
-from models import Song
+from models import Song, User, favoriteSong
 
 db.create_all()
 db.session.commit()
@@ -21,9 +21,37 @@ db.session.commit()
 def front_page():
     return 'Hello everybody! It is a pleasure having you here'
 
-@app.route('/room')
-def room_page():
-    return render_template("room.html")
+@app.route('/register')
+def register():
+    return render_template("register.html")
+
+@app.route('/create-user', methods=['POST'])
+def create_user():
+    email = request.form["email"]
+    password = request.form["password"]
+    print(email)
+    print(password)
+
+    user = User(email, password)
+    db.session.add(user)
+    db.session.commit()
+
+    
+
+    return redirect(url_for("room_page", id = user.id))
+
+
+@app.route('/room/<id>')
+def room_page(id):
+    return render_template("room.html", id = id)
+
+@app.route('/create-room', methods=['POST'])
+def create_room():
+    room_code = request.form["room_code"]
+    print("Elcodigo de la sala es: ")
+    print(room_code)
+
+    return "ok"
 
 @app.route('/song', methods=['GET', 'POST'])
 def crud_song():
@@ -79,3 +107,4 @@ def delete_song():
     db.session.delete(song)
     db.session.commit()
     return "se borró la canción"
+
